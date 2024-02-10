@@ -11,8 +11,15 @@ for a in answer:
         response = a['answer']
         break
 
-# Remove "*" from the response and remove [] and the text inside
+# Remove "*" from the response
 response = response.replace("*", "")
+# Loop through the response and remove every [ and ] and everything in between them
+while "[" in response:
+    start = response.index("[")
+    end = response.index("]")
+    response = response[:start] + response[end+1:]
+
+# Print the response
 print(response)
 # Initialiser le moteur de synthèse vocale
 engine = pyttsx3.init()
